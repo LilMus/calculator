@@ -1,0 +1,48 @@
+$background-color: #f1f1f2;
+$calculation-text: rgba(113, 113, 113, 255);
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.calculator {
+	background-color: grey;
+	width: 400px;
+	height: 500px;
+	background-color: $background-color;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	h1 {
+		font-size: 15px;
+		margin-left: 10px;
+		margin-top: 10px;
+		margin-bottom: 0;
+	}
+	.display-screen {
+		// background-color: yellow;
+		height: 100px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	h2 {
+		text-align: end;
+		margin: 0px 15px;
+	}
+	.display-area {
+		font-size: 50px;
+	}
+	.calculation-area {
+		font-size: 15px;
+		color: $calculation-text;
+		font-weight: 400;
+		margin-top: 10px;
+	}
+}

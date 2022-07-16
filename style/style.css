@@ -1,3 +1,45 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/*# sourceMappingURL=style.css.map */
+.calculator {
+  background-color: grey;
+  width: 400px;
+  height: 500px;
+  background-color: #f1f1f2;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.calculator h1 {
+  font-size: 15px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.calculator .display-screen {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.calculator h2 {
+  text-align: end;
+  margin: 0px 15px;
+}
+.calculator .display-area {
+  font-size: 50px;
+}
+.calculator .calculation-area {
+  font-size: 15px;
+  color: rgb(113, 113, 113);
+  font-weight: 400;
+  margin-top: 10px;
+}/*# sourceMappingURL=style.css.map */
