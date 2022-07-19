@@ -1,5 +1,8 @@
 $background-color: #f1f1f2;
 $calculation-text: rgba(113, 113, 113, 255);
+$operator-color: #f7f7f7;
+$equal-color: #91c1e7;
+
 html,
 body {
 	height: 100%;
@@ -14,9 +17,11 @@ body {
 }
 
 .calculator {
+	display: flex;
+	flex-direction: column;
 	background-color: grey;
 	width: 400px;
-	height: 500px;
+	height: 450px;
 	background-color: $background-color;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	h1 {
@@ -44,5 +49,115 @@ body {
 		color: $calculation-text;
 		font-weight: 400;
 		margin-top: 10px;
+	}
+	.buttons-area {
+		height: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(5, 1fr);
+		grid-column-gap: 3px;
+		grid-row-gap: 3px;
+		margin: 0 3px;
+		box-sizing: border-box;
+	}
+	.div1 {
+		grid-area: 1 / 1 / 2 / 2;
+		background-color: $operator-color;
+		box-sizing: border-box;
+	}
+	.div2 {
+		grid-area: 1 / 2 / 2 / 3;
+		background-color: $operator-color;
+	}
+	.div3 {
+		grid-area: 1 / 3 / 2 / 4;
+		background-color: $operator-color;
+	}
+	.div4 {
+		grid-area: 1 / 4 / 2 / 5;
+		background-color: $operator-color;
+	}
+	.div5 {
+		grid-area: 2 / 1 / 3 / 2;
+		background-color: white;
+	}
+	.div6 {
+		grid-area: 2 / 2 / 3 / 3;
+		background-color: white;
+	}
+	.div7 {
+		grid-area: 2 / 3 / 3 / 4;
+		background-color: white;
+	}
+	.div8 {
+		grid-area: 2 / 4 / 3 / 5;
+		background-color: $operator-color;
+	}
+	.div9 {
+		grid-area: 3 / 1 / 4 / 2;
+		background-color: white;
+	}
+	.div10 {
+		grid-area: 3 / 2 / 4 / 3;
+		background-color: white;
+	}
+	.div11 {
+		grid-area: 3 / 3 / 4 / 4;
+		background-color: white;
+	}
+	.div12 {
+		grid-area: 3 / 4 / 4 / 5;
+		background-color: $operator-color;
+	}
+	.div13 {
+		grid-area: 4 / 1 / 5 / 2;
+		background-color: white;
+	}
+	.div14 {
+		grid-area: 4 / 2 / 5 / 3;
+		background-color: white;
+	}
+	.div15 {
+		grid-area: 4 / 3 / 5 / 4;
+		background-color: white;
+	}
+	.div16 {
+		grid-area: 4 / 4 / 5 / 5;
+		background-color: $operator-color;
+	}
+	.div17 {
+		grid-area: 5 / 1 / 6 / 2;
+		background-color: white;
+		font-weight: 400;
+	}
+	.div18 {
+		grid-area: 5 / 2 / 6 / 3;
+		background-color: white;
+	}
+	.div19 {
+		grid-area: 5 / 3 / 6 / 4;
+		background-color: white;
+		font-weight: 400;
+	}
+	.div20 {
+		grid-area: 5 / 4 / 6 / 5;
+		background-color: $equal-color;
+		&:hover {
+			background-color: darken($color: $equal-color, $amount: 10);
+		}
+	}
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	font-weight: 700;
+	&:hover {
+		background-color: darken($color: white, $amount: 10);
+	}
+	img {
+		width: 30px;
 	}
 }

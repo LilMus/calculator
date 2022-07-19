@@ -12,9 +12,11 @@ body {
 }
 
 .calculator {
+  display: flex;
+  flex-direction: column;
   background-color: grey;
   width: 400px;
-  height: 500px;
+  height: 450px;
   background-color: #f1f1f2;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -42,4 +44,114 @@ body {
   color: rgb(113, 113, 113);
   font-weight: 400;
   margin-top: 10px;
+}
+.calculator .buttons-area {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+  margin: 0 3px;
+  box-sizing: border-box;
+}
+.calculator .div1 {
+  grid-area: 1/1/2/2;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+}
+.calculator .div2 {
+  grid-area: 1/2/2/3;
+  background-color: #f7f7f7;
+}
+.calculator .div3 {
+  grid-area: 1/3/2/4;
+  background-color: #f7f7f7;
+}
+.calculator .div4 {
+  grid-area: 1/4/2/5;
+  background-color: #f7f7f7;
+}
+.calculator .div5 {
+  grid-area: 2/1/3/2;
+  background-color: white;
+}
+.calculator .div6 {
+  grid-area: 2/2/3/3;
+  background-color: white;
+}
+.calculator .div7 {
+  grid-area: 2/3/3/4;
+  background-color: white;
+}
+.calculator .div8 {
+  grid-area: 2/4/3/5;
+  background-color: #f7f7f7;
+}
+.calculator .div9 {
+  grid-area: 3/1/4/2;
+  background-color: white;
+}
+.calculator .div10 {
+  grid-area: 3/2/4/3;
+  background-color: white;
+}
+.calculator .div11 {
+  grid-area: 3/3/4/4;
+  background-color: white;
+}
+.calculator .div12 {
+  grid-area: 3/4/4/5;
+  background-color: #f7f7f7;
+}
+.calculator .div13 {
+  grid-area: 4/1/5/2;
+  background-color: white;
+}
+.calculator .div14 {
+  grid-area: 4/2/5/3;
+  background-color: white;
+}
+.calculator .div15 {
+  grid-area: 4/3/5/4;
+  background-color: white;
+}
+.calculator .div16 {
+  grid-area: 4/4/5/5;
+  background-color: #f7f7f7;
+}
+.calculator .div17 {
+  grid-area: 5/1/6/2;
+  background-color: white;
+  font-weight: 400;
+}
+.calculator .div18 {
+  grid-area: 5/2/6/3;
+  background-color: white;
+}
+.calculator .div19 {
+  grid-area: 5/3/6/4;
+  background-color: white;
+  font-weight: 400;
+}
+.calculator .div20 {
+  grid-area: 5/4/6/5;
+  background-color: #91c1e7;
+}
+.calculator .div20:hover {
+  background-color: #67a9de;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+.buttons:hover {
+  background-color: #e6e6e6;
+}
+.buttons img {
+  width: 30px;
 }/*# sourceMappingURL=style.css.map */
