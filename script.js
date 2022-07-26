@@ -13,61 +13,151 @@ let firstNumber = 0;
 let secondNumber = 1;
 let operatorClicked = false;
 let isReset = false;
+let resultDisplayed = false;
 
-const add = (a, b) => a + b;
-const minus = (a, b) => a - b;
-const multiply = (a, b) => a * b;
+const add = (a, b) => {
+	num = a + b;
+	return Math.round(num * 100) / 100;
+};
+
+const minus = (a, b) => {
+	num = a - b;
+	return Math.round(num * 100) / 100;
+};
+
+const multiply = (a, b) => {
+	num = a * b;
+	return Math.round(num * 100) / 100;
+};
+
 const divide = (a, b) => {
 	if (b === 0) {
 		return "ERROR";
 	}
-	return a / b;
+	num = a / b;
+	return Math.round(num * 100) / 100;
+};
+
+const percentage = (a, b) => {
+	num = (a / 100) * b;
+	return Math.round(num * 100) / 100;
 };
 
 const resetDisplayArea = () => (displayArea.textContent = "");
 
-const addToDisplayArea = content => {
-	displayArea.textContent += content;
+const resetCalculationArea = () => (calculationArea.textContent = "");
+
+const clearCalculator = () => {
+	resetDisplayArea();
+	resetCalculationArea();
 };
+
+const addToDisplayArea = content => (displayArea.textContent += content);
 
 const addToCalculationArea = content => {
 	calculationArea.textContent += content;
 };
 
+const changeDisplayArea = content => (displayArea.textContent = content);
+
+const suppressLastNumber = () => {
+	changeDisplayArea(displayArea.textContent.slice(0, -1));
+};
+
+const addComma = () => {
+	if (
+		displayArea.textContent.slice(-1) === "." ||
+		displayArea.textContent.slice(-1) === ""
+	) {
+		return;
+	}
+	addToDisplayArea(".");
+};
+
+const changeSign = () => {
+	if (displayArea.textContent === "0" || displayArea.textContent === "") {
+		return;
+	}
+	displayArea.textContent = (-Number(displayArea.textContent)).toString();
+};
+
+const addResetEventListener = () =>
+	clear.addEventListener("click", clearCalculator);
+
 const addNumberEventListener = () => {
 	for (let number of numbers) {
 		number.addEventListener("click", event => {
-			addToDisplayArea(event.target.textContent);
+			if (resultDisplayed) {
+				changeDisplayArea(event.target.textContent);
+				resetCalculationArea();
+				resultDisplayed = false;
+			} else {
+				addToDisplayArea(event.target.textContent);
+			}
 		});
 	}
 };
 
 const addOperatorToDisplay = operator => {
-	if (operatorClicked) {
-		calculationArea.textContent = calculationArea.textContent.slice(0, -3);
-		if (operator === operators[0]) {
-			addToCalculationArea(" / ");
-		} else if (operator === operators[1]) {
-			addToCalculationArea(" x ");
-		} else if (operator === operators[2]) {
-			addToCalculationArea(" - ");
-		} else if (operator === operators[3]) {
-			addToCalculationArea(" + ");
+	if (resultDisplayed) {
+		if (operatorClicked) {
+			calculationArea.textContent = calculationArea.textContent.slice(0, -3);
+			if (operator === operators[0]) {
+				addToCalculationArea(" / ");
+			} else if (operator === operators[1]) {
+				addToCalculationArea(" x ");
+			} else if (operator === operators[2]) {
+				addToCalculationArea(" - ");
+			} else if (operator === operators[3]) {
+				addToCalculationArea(" + ");
+			}
+		} else {
+			firstNumber = parseInt(displayArea.textContent);
+			calculationArea.textContent = firstNumber;
+			if (operator === operators[0]) {
+				addToCalculationArea(" / ");
+			} else if (operator === operators[1]) {
+				addToCalculationArea(" x ");
+			} else if (operator === operators[2]) {
+				addToCalculationArea(" - ");
+			} else if (operator === operators[3]) {
+				addToCalculationArea(" + ");
+			}
+			operatorClicked = true;
+			resetDisplayArea();
+			resultDisplayed = false;
 		}
 	} else {
-		firstNumber = parseInt(displayArea.textContent);
-		addToCalculationArea(firstNumber);
-		if (operator === operators[0]) {
-			addToCalculationArea(" / ");
-		} else if (operator === operators[1]) {
-			addToCalculationArea(" x ");
-		} else if (operator === operators[2]) {
-			addToCalculationArea(" - ");
-		} else if (operator === operators[3]) {
-			addToCalculationArea(" + ");
+		if (operatorClicked) {
+			calculationArea.textContent = calculationArea.textContent.slice(0, -3);
+			if (operator === operators[0]) {
+				addToCalculationArea(" / ");
+			} else if (operator === operators[1]) {
+				addToCalculationArea(" x ");
+			} else if (operator === operators[2]) {
+				addToCalculationArea(" - ");
+			} else if (operator === operators[3]) {
+				addToCalculationArea(" + ");
+			} else if (operator === "%") {
+				addToCalculationArea(" % ");
+			}
+		} else {
+			firstNumber = Number(displayArea.textContent);
+			addToCalculationArea(firstNumber);
+			if (operator === operators[0]) {
+				addToCalculationArea(" / ");
+			} else if (operator === operators[1]) {
+				addToCalculationArea(" x ");
+			} else if (operator === operators[2]) {
+				addToCalculationArea(" - ");
+			} else if (operator === operators[3]) {
+				addToCalculationArea(" + ");
+			} else if (operator === "%") {
+				addToCalculationArea(" % ");
+			}
+			operatorClicked = true;
+			resetDisplayArea();
 		}
-		operatorClicked = true;
-		resetDisplayArea();
 	}
 };
 
@@ -79,5 +169,47 @@ const addOperatorEventListener = () => {
 	}
 };
 
+const addEqualEventListener = () => {
+	equal.addEventListener("click", () => {
+		operatorClicked = false;
+		secondNumber = Number(displayArea.textContent);
+		if (calculationArea.textContent.includes("+")) {
+			changeDisplayArea(add(firstNumber, secondNumber));
+			addToCalculationArea(secondNumber);
+		} else if (calculationArea.textContent.includes("-")) {
+			changeDisplayArea(minus(firstNumber, secondNumber));
+			addToCalculationArea(secondNumber);
+		} else if (calculationArea.textContent.includes("/")) {
+			changeDisplayArea(divide(firstNumber, secondNumber));
+			addToCalculationArea(secondNumber);
+		} else if (calculationArea.textContent.includes("x")) {
+			changeDisplayArea(multiply(firstNumber, secondNumber));
+			addToCalculationArea(secondNumber);
+		} else if (calculationArea.textContent.includes("%")) {
+			changeDisplayArea(percentage(firstNumber, secondNumber));
+			addToCalculationArea(secondNumber);
+		}
+		firstNumber = Number(displayArea.textContent);
+		resultDisplayed = true;
+	});
+};
+
+const addSuppressEventListener = () =>
+	suppress.addEventListener("click", suppressLastNumber);
+
+const addPercentEventListener = () =>
+	percent.addEventListener("click", () => addOperatorToDisplay("%"));
+
+const addCommaEventListener = () => comma.addEventListener("click", addComma);
+
+const plusMinusEventLister = () =>
+	plusMinus.addEventListener("click", changeSign);
+
 addNumberEventListener();
 addOperatorEventListener();
+addEqualEventListener();
+addResetEventListener();
+addSuppressEventListener();
+addPercentEventListener();
+addCommaEventListener();
+plusMinusEventLister();
