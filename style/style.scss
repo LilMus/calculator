@@ -24,6 +24,7 @@ body {
 	height: 450px;
 	background-color: $background-color;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	border: 1px solid black;
 	h1 {
 		font-size: 15px;
 		margin-left: 10px;
@@ -43,12 +44,14 @@ body {
 	}
 	.display-area {
 		font-size: 50px;
+		height: 58px;
 	}
 	.calculation-area {
 		font-size: 15px;
 		color: $calculation-text;
 		font-weight: 400;
 		margin-top: 10px;
+		height: 17px;
 	}
 	.buttons-area {
 		height: 100%;
@@ -57,7 +60,7 @@ body {
 		grid-template-rows: repeat(5, 1fr);
 		grid-column-gap: 3px;
 		grid-row-gap: 3px;
-		margin: 0 3px;
+		margin: 0 0px;
 		box-sizing: border-box;
 	}
 	.div1 {

@@ -19,6 +19,7 @@ body {
   height: 450px;
   background-color: #f1f1f2;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid black;
 }
 .calculator h1 {
   font-size: 15px;
@@ -38,12 +39,14 @@ body {
 }
 .calculator .display-area {
   font-size: 50px;
+  height: 58px;
 }
 .calculator .calculation-area {
   font-size: 15px;
   color: rgb(113, 113, 113);
   font-weight: 400;
   margin-top: 10px;
+  height: 17px;
 }
 .calculator .buttons-area {
   height: 100%;
@@ -52,7 +55,7 @@ body {
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 3px;
   grid-row-gap: 3px;
-  margin: 0 3px;
+  margin: 0 0px;
   box-sizing: border-box;
 }
 .calculator .div1 {

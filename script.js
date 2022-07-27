@@ -50,6 +50,8 @@ const resetCalculationArea = () => (calculationArea.textContent = "");
 const clearCalculator = () => {
 	resetDisplayArea();
 	resetCalculationArea();
+	firstNumber = 0;
+	secondNumber = 1;
 };
 
 const addToDisplayArea = content => (displayArea.textContent += content);
@@ -61,6 +63,9 @@ const addToCalculationArea = content => {
 const changeDisplayArea = content => (displayArea.textContent = content);
 
 const suppressLastNumber = () => {
+	if (resultDisplayed) {
+		return;
+	}
 	changeDisplayArea(displayArea.textContent.slice(0, -1));
 };
 
@@ -107,21 +112,23 @@ const addOperatorToDisplay = operator => {
 			} else if (operator === operators[1]) {
 				addToCalculationArea(" x ");
 			} else if (operator === operators[2]) {
-				addToCalculationArea(" - ");
+				addToCalculationArea(" − ");
 			} else if (operator === operators[3]) {
 				addToCalculationArea(" + ");
 			}
 		} else {
-			firstNumber = parseInt(displayArea.textContent);
+			firstNumber = Number(displayArea.textContent);
 			calculationArea.textContent = firstNumber;
 			if (operator === operators[0]) {
 				addToCalculationArea(" / ");
 			} else if (operator === operators[1]) {
 				addToCalculationArea(" x ");
 			} else if (operator === operators[2]) {
-				addToCalculationArea(" - ");
+				addToCalculationArea(" − ");
 			} else if (operator === operators[3]) {
 				addToCalculationArea(" + ");
+			} else if (operator === "%") {
+				addToCalculationArea(" % ");
 			}
 			operatorClicked = true;
 			resetDisplayArea();
@@ -135,7 +142,7 @@ const addOperatorToDisplay = operator => {
 			} else if (operator === operators[1]) {
 				addToCalculationArea(" x ");
 			} else if (operator === operators[2]) {
-				addToCalculationArea(" - ");
+				addToCalculationArea(" − ");
 			} else if (operator === operators[3]) {
 				addToCalculationArea(" + ");
 			} else if (operator === "%") {
@@ -149,7 +156,7 @@ const addOperatorToDisplay = operator => {
 			} else if (operator === operators[1]) {
 				addToCalculationArea(" x ");
 			} else if (operator === operators[2]) {
-				addToCalculationArea(" - ");
+				addToCalculationArea(" − ");
 			} else if (operator === operators[3]) {
 				addToCalculationArea(" + ");
 			} else if (operator === "%") {
@@ -176,7 +183,7 @@ const addEqualEventListener = () => {
 		if (calculationArea.textContent.includes("+")) {
 			changeDisplayArea(add(firstNumber, secondNumber));
 			addToCalculationArea(secondNumber);
-		} else if (calculationArea.textContent.includes("-")) {
+		} else if (calculationArea.textContent.includes("−")) {
 			changeDisplayArea(minus(firstNumber, secondNumber));
 			addToCalculationArea(secondNumber);
 		} else if (calculationArea.textContent.includes("/")) {
